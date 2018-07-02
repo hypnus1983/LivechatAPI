@@ -118,8 +118,9 @@
   | `allowedDomains` | array | no | no | an array of domains/urls, on which the chat button is visible. |
   | `adaptive.themeColor` | string | no | no | the theme color of chatbutton, available when `type` is `adaptive`. |
   | `adaptive.icon` | string | no | no | icon of the chat button, available when `type` is `adaptive`. | 
-  | `image.onlineImageUrl` | string | no | no | url of the image when any agents are on line, available when `type` is `image`. |
-  | `image.offlineImageUrl` | string | no | no | url of the image when no agent is on line, available when `type` is `image`. |
+  | `image.type` | string | no | no | the type of the image ,including gallery and upload,available when buttonType is image. | 
+  | `image.onlineImageId` | string | no | no | id of the image when any agents are on line, available when `type` is `image`. |
+  | `image.offlineImageId` | string | no | no | id of the image when no agent is on line, available when `type` is `image`. |
   | `image.isFloat` | boolean | no | no |    whether the chat button is float or not, available when `type` is `image`. |
   | `image.position.type` | string | no | no | position of the chat button, including `centered`, `topLeft`, `topMiddle`, `topRight`, `buttomLeft`, `buttomMiddle`, `buttomRight`, `leftMiddle` and `rightMiddle`, available when `type` is `image`. |
   | `image.position.x` | string | no | no | coordinate y of the button, allowed as a number or percentage like `10` or `10%`, available when `type` is `image`. |
@@ -128,8 +129,8 @@
   | `image.mobile.onlineText` | string | no | no | the content of text on mobile device when online, available when `image.mobile.type` is `text`and `type` is `image`. |
   | `image.mobile.offlineText` | string | no | no | the content of text on mobile device when no agent is on line, available when `image.mobile.type` is `text`and `type` is `image`. |
   | `image.mobile.themeColor` | string | no | no | the theme color of chatbutton on mobile device, available when `image.mobile.type` is `text`and `type` is `image`. |
-  | `image.mobile.onlineImageUrl` | string | no | no | the url of image on mobile device when any agents are on line, available when `image.mobile.type` is `image`and `type` is `image`. |
-  | `image.mobile.offlineImageUrl` | string | no | no | the url of image on mobile device when no agent is on line, available when `image.mobile.type` is `image` and `type` is `image`. |
+  | `image.mobile.onlineImageId` | string | no | no | the id of image on mobile device when any agents are on line, available when `image.mobile.type` is `image`and `type` is `image`. |
+  | `image.mobile.offlineImageId` | string | no | no | the id of image on mobile device when no agent is on line, available when `image.mobile.type` is `image` and `type` is `image`. |
   | `image.mobile.position` | string | no | no | position of the chat button on mobile device, including `bottomLeft`, `bottomMiddle`, `bottomRight`, `leftMiddle`, `RightMiddle`, `leftBottom` and `rightBottom`, available when `image.mobile.type` is `image` and `type` is `image`. |
   | `textLink.text` | string | no | no | the content of the text link, available when `type` is `textLink`. |
  
