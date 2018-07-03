@@ -326,7 +326,7 @@
   | `message.italic` | boolean  | no | no | whether the text is italic or not. |
   | `message.color` |string  | no | no | the color of text. |
   | `popup.position` |string  | no | no | the position of invitation window, including `centered`, `centeredWithOverlay`, `topLeft`, `topMiddle`, `topRight`, `buttomLeft`, `buttomMiddle`, `buttomRight`, `leftMiddle` and `rightMiddle`. |
-  | `popup.image.url` |string  | no | no |url of invitation image. |
+  | `popup.image.id` |string  | no | no |id of invitation image. |
   | `popup.messageFrame.x` |float  | no | no | coordinate x of the text area |
   | `popup.messageFrame.y` |float  | no | no | coordinate y of the text area |
   | `popup.messageFrame.width` |float  | no | no | width of the text area |
