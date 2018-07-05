@@ -325,7 +325,8 @@
   | `message.fontsize` |string  | no | no | the size of text. |
   | `message.italic` | boolean  | no | no | whether the text is italic or not. |
   | `message.color` |string  | no | no | the color of text. |
-  | `popup.position` |string  | no | no | the position of invitation window, including `centered`, `centeredWithOverlay`, `topLeft`, `topMiddle`, `topRight`, `buttomLeft`, `buttomMiddle`, `buttomRight`, `leftMiddle` and `rightMiddle`. |
+  | `popup.position` |string  | no | no | the position of invitation window, including `centered`, `centeredWithOverlay`, `topLeft`, `topMiddle`, `topRight`, `buttomLeft`, `buttomMiddle`, `buttomRight`, `leftMiddle` and `rightMiddle`. |  
+  | `popup.image.type` |string  | no | no |the type of the image ,including gallery and upload. |
   | `popup.image.id` |int  | no | no |id of invitation image. |
   | `popup.messageFrame.x` |float  | no | no | coordinate x of the text area |
   | `popup.messageFrame.y` |float  | no | no | coordinate y of the text area |
