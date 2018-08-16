@@ -39,6 +39,13 @@ To enable ARR as a proxy, and to create a URL Rewrite rule to enable ARR as a fo
 3. Explodes the **Sites** node in the **Connections** pane, and click the proxy site.
 4. In the server pane, double-click **Compression**.
 5. In the **Compression page**, unselect **Enable dynamic content compression**.In the Actions pane, click Apply. This disenables dynamic content compression at the site level.
+6. Hit the windows'start menu or press the Windows key and start typing Notepad. Right-click **Notepad** and choose **Run as administrator**.
+7. In Notepad, click **File** then **Open…** In the File name field, paste the following path in:
+> c:\Windows\System32\Drivers\etc\hosts
+8. In the opened file, go to the bottom and add a new line specifying the IP address of the proxy website followed by its corresponding URL. for example:
+ > 127.0.0.1 www.proxyserver.com
+9. Finally save the file.
+
 
 #### Step 5 - Config URL Rewrite Rules
 1. Click the proxy site in **Sites** node in the **Connections** pane. In the **Actions** pane, click **Explore** to open the website's directory.
