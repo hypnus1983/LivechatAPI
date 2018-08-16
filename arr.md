@@ -1,4 +1,4 @@
-## IIS(ARR) as a web server
+## IIS as a web server
 The next part will show you how to use the Application Request Routing (ARR) and URL Rewrite features of Internet Information Services (IIS) to implement a forward proxy server.
 
 ### Prerequisites
