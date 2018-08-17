@@ -53,6 +53,7 @@ To enable ARR as a proxy, and to create a URL Rewrite rule to enable ARR as a fo
 3. Edit the file as follows example. Make sure to replace ***www.proxyserver.com*** to the partner own independent-domain, and replace **app.platform.comm100.com** to the Comm100's partner sub-domain.Save the web.config file at last.
 
 ```
+<?xml version="1.0" encoding="UTF-8"?>
 <configuration>
     <system.webServer>
         <rewrite>
@@ -63,14 +64,19 @@ To enable ARR as a proxy, and to create a URL Rewrite rule to enable ARR as a fo
                         <add input="{HTTP_HOST}" pattern="^www.proxyserver.com$" />
                     </conditions>
                     <action type="Rewrite" url="https://app.platform.comm100.com/{R:1}" />
+
                 </rule>
             </rules>
             <outboundRules>
-                <rule name="test" preCondition="IsHTML">
-                    <match filterByTags="A" pattern="http.+?/app.platform.comm100.com/(.+)" />
+                <rule name="rewrite tags" preCondition="IsHTML">
+                    <match filterByTags="A, Form, Img, Link" pattern="(http|https)://app.platform.comm100.com/(.+)" />
                     <conditions>
                     </conditions>
-                    <action type="Rewrite" value="https://www.proxyserver.com/{R:1}" />
+                    <action type="Rewrite" value="{R:1}://www.proxyserver.com/{R:2}" />
+                </rule>
+                <rule name="rewrite window.location" preCondition="IsHTML">
+                    <match filterByTags="None" pattern="window[.]location([.]href){0,1}[ ]*=[ ]*(&amp;#39;|')(http|https)://app.platform.comm100.com/(.+?)(&amp;#39;|')" />
+                    <action type="Rewrite" value="window.location{R:1}={R:2}{R:3}://www.proxyserver.com/{R:4}{R:5}" />
                 </rule>
                 <preConditions>
                     <preCondition name="IsHTML">
@@ -82,6 +88,7 @@ To enable ARR as a proxy, and to create a URL Rewrite rule to enable ARR as a fo
         <urlCompression doDynamicCompression="false" />
     </system.webServer>
 </configuration>
+
 
 ```
 
