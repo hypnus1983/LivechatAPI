@@ -78,6 +78,10 @@ To enable ARR as a proxy, and to create a URL Rewrite rule to enable ARR as a fo
                     <match filterByTags="None" pattern="window[.]location([.]href){0,1}[ ]*=[ ]*(&amp;#39;|')(http|https)://app.platform.comm100.com/(.+?)(&amp;#39;|')" />
                     <action type="Rewrite" value="window.location{R:1}={R:2}{R:3}://www.proxyserver.com/{R:4}{R:5}" />
                 </rule>
+                <rule name="rewrite window.open" preCondition="IsHTML">
+                    <match filterByTags="None" pattern="window.open[(]&quot;(https|http)://app.platform.comm100.com/(.+?)&quot;" />
+                    <action type="Rewrite" value="window.open(&quot;{R:1}://www.proxyserver.com/{R:2}&quot;" />
+                </rule>
                 <preConditions>
                     <preCondition name="IsHTML">
                         <add input="{RESPONSE_CONTENT_TYPE}" pattern="^text/html" />
@@ -88,6 +92,7 @@ To enable ARR as a proxy, and to create a URL Rewrite rule to enable ARR as a fo
         <urlCompression doDynamicCompression="false" />
     </system.webServer>
 </configuration>
+
 
 
 ```
