@@ -20,7 +20,7 @@
   | [Chat](#chat) | `/livechat/chats` |
   | [Message](#message) | `/livechat/messages` |
  
-## Campaign
+# Campaign
   You need `Manage Campaigns` permission to manage campaigns and customize the settings for a campaigns.
   - `Campaigns` - Campaigns Manage
     + `GET /api/v1/livechat/campaigns` - Get list of campaigns
@@ -33,18 +33,18 @@
     + `PUT /api/v1/livechat/campaigns/{id}/chatButton` - Update settings of ChatButton for a campaign
     + `GET /api/v1/livechat/campaigns/{id}/chatWindow`  - Get settings of ChatWindow for a campaign
     + `PUT /api/v1/livechat/campaigns/{id}/chatWindow`  - Update settings of ChatWindow for a campaign
-    + `GET /api/v1/livechat/campaigns/{id}/preChat`  - [Get settings of PreChat for a campaign](https://gist.github.com/chendesheng/50e9b63573f09a1c1a76c1f4ec074ac9#campaigns)
+    + `GET /api/v1/livechat/campaigns/{id}/preChat`  - Get settings of PreChat for a campaign
     + `PUT /api/v1/livechat/campaigns/{id}/preChat`  - Update settings of PreChat for a campaign
-    + `GET /api/v1/livechat/campaigns/{id}/postChat` - [Get settings of PostChat for a campaign](https://gist.github.com/chendesheng/50e9b63573f09a1c1a76c1f4ec074ac9#campaigns)
+    + `GET /api/v1/livechat/campaigns/{id}/postChat` - Get settings of PostChat for a campaign
     + `PUT /api/v1/livechat/campaigns/{id}/postChat` - Update settings of PostChat for a campaign
-    + `GET /api/v1/livechat/campaigns/{id}/offlineMessage`  - [Get settings of OfflineMessage for a campaign](https://gist.github.com/chendesheng/50e9b63573f09a1c1a76c1f4ec074ac9#campaigns)
+    + `GET /api/v1/livechat/campaigns/{id}/offlineMessage`  - Get settings of OfflineMessage for a campaign
     + `PUT /api/v1/livechat/campaigns/{id}/offlineMessage`  - Update settings of OfflineMessage for a campaign
-    + `GET /api/v1/livechat/campaigns/{id}/invitation`  - [Get settings of invitation for a campaign](https://gist.github.com/chendesheng/50e9b63573f09a1c1a76c1f4ec074ac9#campaigns)
+    + `GET /api/v1/livechat/campaigns/{id}/invitation`  - Get settings of invitation for a campaign
     + `PUT /api/v1/livechat/campaigns/{id}/invitation`  - Update settings of invitation for a campaign
     + `GET /api/v1/livechat/campaigns/{id}/invitation/autoInvitations/{autoInvitation_id}`  - Get a autoInvitation for a campaign
     + `POST /api/v1/livechat/campaigns/{id}/invitation/autoInvitations`  - Create a new auto invitation for a campaign
     + `PUT /api/v1/livechat/campaigns/{id}/invitation/autoInvitations/{autoInvitation_id}`  - Update a auto invitation for a campaign
-    + `GET /api/v1/livechat/campaigns/{id}/agentWrapup`  - [Get settings of Agent Wrap Up for a campaign](https://gist.github.com/chendesheng/50e9b63573f09a1c1a76c1f4ec074ac9#campaigns)
+    + `GET /api/v1/livechat/campaigns/{id}/agentWrapup`  - Get settings of Agent Wrap Up for a campaign
     + `PUT /api/v1/livechat/campaigns/{id}/agentWrapup`  - Update settings of Agent Wrap Up for a campaign
     + `GET /api/v1/livechat/campaigns/{id}/RoutingRules` - Get settings of Routing Rules for a campaign
     + `PUT /api/v1/livechat/campaigns/{id}/RoutingRules` - Update settings of Routing Rules for a campaign
@@ -54,7 +54,9 @@
     + `GET /api/v1/livechat/campaigns/{id}/language`  Get settings of Language for a campaign
     + `PUT /api/v1/livechat/campaigns/{id}/language`  Update settings of Language for a campaign
 
-### Campaign Json Format
+## Campaigns
+### Model
+#### Campaign JSON Format
   Campaign is represented as simple flat JSON objects with the following keys:  
 
   | Name | Type | Read-only | Mandatory | Description |    
@@ -64,50 +66,47 @@
   | `description` | string  | no | no | description of the campaign |
   | `language` | string  | no | yes | language of the campaign |
 
-### Get list of campaigns
+### Endpoint
+#### Get list of campaigns
 
   `GET /api/v1/livechat/campaigns`
-
   - Parameters: No parameters
+  - Response: An array of [Campaign](#campaign-json-format)
 
-  - Response: An array of Campaign Object.
-
-### Create a new campaign
+#### Create a new campaign
   
   `POST /api/v1/livechat/campaigns`
+  - Parameters: [Campaign](#campaign-json-format)
+  - Response: [Campaign](#campaign-json-format)
 
-  - Parameters: Campaign Object
-
-  - Response: Campaign Object
-
-### Update a campaign
+#### Update a campaign
     
   `PUT /api/v1/livechat/campaigns/{id}`
-
   - Parameters: Campaign Object
+  - Response: [Campaign](#campaign-json-format)
 
-  - Response: Campaign Object
-
-### Remove a campaign 
+#### Remove a campaign 
   
   `DELETE /api/v1/livechat/campaigns/{id}`
+  - Parameters锛歂o parameters.
+  - Response: 200 OK
+ 
+## Installation Code
 
-  - Parameters
-    No parameters.
- 
-  - Response: Status `200 OK`
- 
-### Get installation code for a campaign
+### Endpoint
+#### Get installation code of a campaign
   
   `GET /api/v1/livechat/campaigns/{id}/code`
  
   - Parameters: No parameters
-
   - Response
-    - `code` -installation code for the campaign.
+    - `code` - installation code for the campaign.
 
 
-### Chat Button Json Format
+## Chat Button
+
+### Model
+#### Chat Button JSON Format
   Chat Button is represented as simple flat JSON objects with the following keys:  
 
   | NameN| Type | Read-only | Mandatory | Description | 
@@ -118,9 +117,9 @@
   | `allowedDomains` | array | no | no | an array of domains/urls, on which the chat button is visible. |
   | `adaptive.themeColor` | string | no | no | the theme color of chatbutton, available when `type` is `adaptive`. |
   | `adaptive.icon` | string | no | no | icon of the chat button, available when `type` is `adaptive`. | 
-  | `image.type` | string | no | no | the type of the image ,including gallery and upload,available when buttonType is image. | 
-  | `image.onlineImageId` | string | no | no | id of the image when any agents are on line, available when `type` is `image`. |
-  | `image.offlineImageId` | string | no | no | id of the image when no agent is on line, available when `type` is `image`. |
+  | `image.type` | string | no | no |  `gallery` or `custom` |
+  | `image.onlineImageId` | int | no | no | id of the image when any agents are on line, available when `type` is `image`. |
+  | `image.offlineImageId` | int | no | no | id of the image when no agent is on line, available when `type` is `image`. |
   | `image.isFloat` | boolean | no | no |    whether the chat button is float or not, available when `type` is `image`. |
   | `image.position.type` | string | no | no | position of the chat button, including `centered`, `topLeft`, `topMiddle`, `topRight`, `buttomLeft`, `buttomMiddle`, `buttomRight`, `leftMiddle` and `rightMiddle`, available when `type` is `image`. |
   | `image.position.x` | string | no | no | coordinate y of the button, allowed as a number or percentage like `10` or `10%`, available when `type` is `image`. |
@@ -129,28 +128,29 @@
   | `image.mobile.onlineText` | string | no | no | the content of text on mobile device when online, available when `image.mobile.type` is `text`and `type` is `image`. |
   | `image.mobile.offlineText` | string | no | no | the content of text on mobile device when no agent is on line, available when `image.mobile.type` is `text`and `type` is `image`. |
   | `image.mobile.themeColor` | string | no | no | the theme color of chatbutton on mobile device, available when `image.mobile.type` is `text`and `type` is `image`. |
-  | `image.mobile.onlineImageId` | string | no | no | the id of image on mobile device when any agents are on line, available when `image.mobile.type` is `image`and `type` is `image`. |
+  | `image.mobile.onlineImageId` | string | no | no | the id of image on mobile device when any agents are online, available when `image.mobile.type` is `image`and `type` is `image`. |
   | `image.mobile.offlineImageId` | string | no | no | the id of image on mobile device when no agent is on line, available when `image.mobile.type` is `image` and `type` is `image`. |
   | `image.mobile.position` | string | no | no | position of the chat button on mobile device, including `bottomLeft`, `bottomMiddle`, `bottomRight`, `leftMiddle`, `RightMiddle`, `leftBottom` and `rightBottom`, available when `image.mobile.type` is `image` and `type` is `image`. |
   | `textLink.text` | string | no | no | the content of the text link, available when `type` is `textLink`. |
- 
-### Get settings of ChatButton for a campaign
+
+### Endpoint
+#### Get ChatButton configuration of a campaign
   
   `GET /api/v1/livechat/campaigns/{id}/chatButton`
-
   - Parameters: No parameters
-
-  - Response: Chat Button Object.
+  - Response: [Chat Button](#chat-button-json-format)
  
-### Update settings of ChatButton for a campaign
+#### Update ChatButton configuration for a campaign
 
   `PUT /api/v1/livechat/campaigns/{id}/chatButton`
+  - Parameters: [Chat Button](#chat-button-json-format)
+  - Response: [Chat Button](#chat-button-json-format)
 
-  - Parameters: Chat Button Object
 
-  - Response: Chat Button Object.
+## Chat Window
 
-### Chat Window Json Format
+### Model
+#### Chat Window JSON Format
   Chat Window is represented as simple flat JSON objects with the following keys:  
  
   | Name | Type | Read-only | Mandatory | Description |
@@ -178,35 +178,35 @@
   | `advanced.isUseCustomJS` | boolean | no | no | whether the agent can add custom js to chat window or not. |
   | `advanced.customJS` | string | no | no | the content of custom javascript. |
   | `header.type` | string | no | no | type of the header, including `agentInfo`, `bannerImage` when `style` is `classic`, including `agentInfo`, `bannerImage` and `avatarAndLogo` when `style` is `simple`. |
-  | `header.agentInfo.isShowDisplayName` | boolean | no | no | whether the display name of the agent is visible or not, available when `style` is `classic`or `simple` and `header.type` is `agentInfo`. |
   | `header.agentInfo.isShowAvatar` | boolean | no | no | whether the avatar of the agent is visible or not, available when `style` is `classic`or `simple` and `header.type` is `agentInfo` or `avatarAndLogo`. |
   | `header.agentInfo.isShowTitle` | boolean | no | no | whether the title of the agent is visible or not, available when `style` is `classic`or `simple` and `header.type` is `agentInfo`. |
-  | `header.agentInfo.isShowBio` | boolean | no | no | whether the bio of the agent is visible or not, available when `style` is `classic`or `simple` and `header.type` is `agentInfo`.
-  | `header.brannerImage.imageUrl` | string | no | no | url of the image in the header of chat window, available when `style` is `classic`or `simple` and `header.type` is `bannerImage`. |
+  | `header.agentInfo.isShowBio` | boolean | no | no | whether the bio of the agent is visible or not, available when `style` is `classic`or `simple` and `header.type` is `agentInfo`. |
+  | `header.banner.imageType` | string | no | no | `custom` or `gallery` |
+  | `header.banner.imageId` | int | no | no | id of the image in the header of chat window, available when `style` is `classic`or `simple` and `header.type` is `bannerImage`. |
   | `header.avatarAndLogo.isShowAvatar` | boolean | no | no | whether the agent avatar is visible or not, available when `style`
   | `header.avatarAndLogo.isShowLogo` | boolean | no | no | whether the logo of the company is visible or not, available when `style` is `classic` and `header.type` is `avatarAndLogo`. |
-  | `header.avatarAndLogo.logoUrl` | string | no | no | url of the company logo image in the header of chat window, available when `style` is `classic` and `header.type` is `avatarAndLogo`. |
+  | `header.avatarAndLogo.logoImageId` | int | no | no | id of the company logo image in the header of chat window, available when `style` is `classic` and `header.type` is `avatarAndLogo`. |
   | `body.isShowAvatar` | boolean | no | no | whether the avatar of the agent is visible or not in the messsage body, available when `style` is `classic`or `simple`. |
   | `body.isShowBackground` | boolean | no | no | whether the texture and picture of the background is visible or not in the messsage body, available when `style` is `classic`or `simple`. |
-  | `body.backgroudImageUrl` | string | no | no | url of the company image in the message body, available when `style` is `classic`or `simple`. |
+  | `body.backgroudImageId` | int | no | no | id of the company image in the message body, available when `style` is `classic`or `simple`. |
  
-### Get settings of ChatWindow for a campaign
+### Endpoint 
+#### Get ChatWindow configuration of a campaign
 
   `GET /api/v1/livechat/campaigns/{id}/chatWindow`
-
   - Parameters: No parameters
+  - Response: [Chat Window](#chat-window-json-format)
 
-  - Response: Chat Window Object
-
-### Update settings of ChatWindow for a campaign
+#### Update ChatWindow configuration of a campaign
 
   `PUT /api/v1/livechat/campaigns/{id}/chatWindow`
+  - Parameters: [Chat Window](#chat-window-json-format)
+  - Response: [Chat Window](#chat-window-json-format)
 
-  - Parameters: Chat Window Object
+## Pre-Chat
 
-  - Response: Chat Window Object
-
-### Pre-Chat Json Format
+### Model
+#### Pre-Chat JSON Format
 
   Pre-Chat is represented as simple flat JSON objects with the following keys:  
 
@@ -223,7 +223,7 @@
   | `fieldLayout` | string | no | yes | the layout style of field display, including `vertical` and `horizontal`. |
   | `fields` | Array | no | no | an array of [field](#field-json-format) object |
 
-### Field Json Format
+#### Field JSON Format
 
   Field is represented as simple flat JSON objects with the following keys:  
 
@@ -237,7 +237,7 @@
   | `isRequired` | boolean | no | no | whether the field is required or not when submiting the form |
   | `options` | string | no | no | the options of the field. |
 
-### Field Type
+#### Field Type
   Field Type is one key of the following keys:    
 
   | Name | isSystem | Description |
@@ -265,15 +265,24 @@
   | `select` | no | Drop Down List field.  |
   | `checkboxList` | no | Check Box List field.  |
 
-### Update settings of PreChat for a campaign
+
+### Endpoint
+#### Get Pre-Chat configuration of a campaign
+
+  `GET /api/v1/livechat/campaigns/{id}/prechat`
+  - Parameters: No parameters
+  - Response: [Pre-Chat](#pre-chat-json-format)
+
+#### Update Pre-Chat configuration for a campaign
 
   `PUT /api/v1/livechat/campaigns/{id}/prechat`
- 
-  - Parameters: Pre-Chat Object
- 
-  - Response: Pre-Chat Object
+  - Parameters: [Pre-Chat](#pre-chat-json-format)
+  - Response: [Pre-Chat](#pre-chat-json-format)
 
-### Post-Chat Json Format
+## Post-Chat
+
+### Model
+#### Post-Chat JSON Format
   Post-Chat is represented as simple flat JSON objects with the following keys:  
 
   | Name | Type | Read-only | Mandatory | Description |
@@ -283,15 +292,25 @@
   | `fieldLayout` | string | no | no | the layout style of field, including `vertical` and `horizontal`. |
   | `fields` | Array | no | no | an array of [field](#field-json-format) object
 
-### Update settings of PostChat for a campaign
+
+### Endpoint
+
+#### Get Post-Chat configuration of a campaign
+
+  `GET /api/v1/livechat/campaigns/{id}/postchat`
+  - Parameters: No parameters
+  - Response: [Post-Chat](#post-chat-json-format)
+  
+#### Update Post-Chat configuration of a campaign
 
   `PUT /api/v1/livechat/campaigns/{id}/postchat`
+  - Parameters: [Post-Chat](#post-chat-json-format)
+  - Response: [Post-Chat](#post-chat-json-format)
 
-  - Parameters: Post-Chat Object
- 
-  - Response: Post-Chat Object
+## Offline Message
 
-### Offline Message Json Format 
+### Model
+#### Offline Message JSON Format 
   Offline Message is represented as simple flat JSON objects with the following keys:  
 
   | Name | Type | Read-only | Mandatory | Description |
@@ -306,15 +325,22 @@
   | `fieldLayout` | string | no | no | the layout style of field, including `vertical` and `horizontal`. |
   | `fields` | Array | no | no | an array of [field](#field-json-format) object |
 
-### Update settings of offline message for a campaign
+### Endpoint
+#### Get OfflineMessage configuration of a campaign
+
+  `GET /api/v1/livechat/campaigns/{id}/offlineMessage`
+  - Parameters: No parameters
+  - Response: [Offline Message](#offline-message-json-format)
+
+#### Update OfflineMessage configuration of a campaign
 
   `PUT /api/v1/livechat/campaigns/{id}/offlineMessage`
+  - Parameters: [Offline Message](#offline-message-json-format)
+  - Response: [Offline Message](#offline-message-json-format)
 
-  - Parameters: Offline Message Object
-
-  - Response: Offline Message Object
-
-### Invitation Window Json Format    
+## Invitation
+### Model
+#### Invitation Window JSON Format    
   Invitation Window is represented as simple flat JSON objects with the following keys:  
 
   | Name | Type | Read-only | Mandatory | Description |
@@ -325,9 +351,9 @@
   | `message.fontsize` |string  | no | no | the size of text. |
   | `message.italic` | boolean  | no | no | whether the text is italic or not. |
   | `message.color` |string  | no | no | the color of text. |
-  | `popup.position` |string  | no | no | the position of invitation window, including `centered`, `centeredWithOverlay`, `topLeft`, `topMiddle`, `topRight`, `buttomLeft`, `buttomMiddle`, `buttomRight`, `leftMiddle` and `rightMiddle`. |  
-  | `popup.image.type` |string  | no | no |the type of the image ,including gallery and upload. |
-  | `popup.image.id` |int  | no | no |id of invitation image. |
+  | `popup.position` |string  | no | no | the position of invitation window, including `centered`, `centeredWithOverlay`, `topLeft`, `topMiddle`, `topRight`, `buttomLeft`, `buttomMiddle`, `buttomRight`, `leftMiddle` and `rightMiddle`. |
+  | `popup.imageType` | string | no | no | `custom` or `gallery` |
+  | `popup.imageId` | int  | no | no | id of invitation image. |
   | `popup.messageFrame.x` |float  | no | no | coordinate x of the text area |
   | `popup.messageFrame.y` |float  | no | no | coordinate y of the text area |
   | `popup.messageFrame.width` |float  | no | no | width of the text area |
@@ -337,7 +363,7 @@
   | `popup.closeFrame.width` |float  | no | no | width of the close area |
   | `popup.closeFrame.height` |float  | no | no | height of the close area |
 
-### Auto Invitation Json Format
+#### Auto Invitation JSON Format
   Auto Invitation is represented as simple flat JSON objects with the following keys:  
 
   | Name | Type | Read-only | Mandatory | Description |
@@ -349,7 +375,7 @@
   | `invitationWindow` | [InvitationWindow](#invitation-window-json-format) | no | no | an invitation window json object. |
   | `conditions` | [Conditions](#conditions-json-format) | no | no | an trigger condition json object. |
 
-### Conditions Json Format
+#### Conditions JSON Format
   Conditions is represented as simple flat JSON objects with the following keys:  
 
   | Name | Type | Read-only | Mandatory | Description |
@@ -358,7 +384,7 @@
   | `logicalExpression` | string | no | no | the logical expression of the conditions |
   | `list` | array | no | no |an array of [condition](#condition-json-format) |
 
-### Condition Json Format
+#### Condition JSON Format
   Condition is represented as simple flat JSON objects with the following keys:  
 
   | Name | Type | Read-only | Mandatory | Description |
@@ -368,71 +394,77 @@
   | `operator` | string  | no | yes | a comparison operator |
   | `value` | string  | no | yes | the value of a visitor field |
 
-### Get settings of invitation for a campaign
+
+### Endpoint
+#### Get invitation configuration of a campaign
 
   `GET /api/v1/livechat/campaigns/{id}/invitation`
-
   - Parameters: No parameters
-
   - Response
     - `style` - the layout style of invitation window, including `bubble`, `popup` and `chatwindow`
-    - `autoInvitations` - an array of [auto invitation](#auto-invitation-json-format) json object.
-    - `manualInvitation` - [invitation window](#invitation-window-json-format) json object
+    - `autoInvitations` - an array of [Auto invitation](#auto-invitation-json-format) json object.
+    - `manualInvitation` - [Invitation window](#invitation-window-json-format) json object
 
-### Update style of invitation for a campaign
+#### Update Invitation style of a campaign
 
   `PUT /api/v1/livechat/campaigns/{id}/invitation`
- 
   - Parameters
     - `style` - the layout style of invitation window, including `bubble`, `popup` and `chatwindow`
-  
   - Response 
     - `style` - the layout style of invitation window, including `bubble`, `popup` and `chatwindow`
-    - `autoInvitations` - an array of [auto invitation](#auto-invitation-json-format) json object.
-    - `manualInvitation` - [invitation window](#invitation-window-json-format) json object
+    - `autoInvitations` - an array of [Auto invitation](#auto-invitation-json-format) json object.
+    - `manualInvitation` - [Invitation window](#invitation-window-json-format) json object
 
-### Update manualInvitation for a campaign
+#### Update manualInvitation for a campaign
 
   `PUT /api/v1/livechat/campaigns/{id}/invitation/manualInvitation`
-
-  - Parameters: Invitation Window Object
-  
-  - Response: Invitation Window Object
+  - Parameters: [Invitation Window](#invitation-window-json-format)
+  - Response: [Invitation Window](#invitation-window-json-format)
  
-### Get a autoInvitation for a campaign
+#### Get an auto invitation for a campaign
    
   `GET /api/v1/livechat/campaigns/{id}/invitation/autoInvitations/{autoInvitation_id}`
- 
   - Parameters: No parameters
+  - Response: [Auto invitation](#auto-invitation-json-format)
   
-  - Response: Auto Invitation Object
-  
-## Create a new auto invitation for a campaign
+#### Create a new auto invitation for a campaign
    
   `POST /api/v1/livechat/campaigns/{id}/invitation/autoInvitations`
+  - Parameters: [Auto invitation](#auto-invitation-json-format)
+  - Response: [Auto invitation](#auto-invitation-json-format)
 
-  - Parameters: Auto Invitation Object
-
-  - Response: Auto Invitation Object
-
-## Update a auto invitation for a campaign
+#### Update an auto invitation for a campaign
   
   `PUT /api/v1/livechat/campaigns/{id}/invitation/autoInvitations/{autoInvitation_id}`
+  - Parameters: [Auto invitation](#auto-invitation-json-format)
+  - Response: [Auto invitation](#auto-invitation-json-format)
 
-  - Parameters: Auto Invitation Object
+#### Delete an auto invitation for a campaign
 
-  - Response: Auto Invitation Object
+  ` DELETE /api/v1/livechat/campaigns/{id}/invitation/autoInvitations/{auto_invitation_id}`
+  - Parameters: No parameters
+  - Response: 200 OK
 
-### Update settings of agent wrap-up for a campaign
+## Agent Wrapup
+
+### Endpoint
+#### Get agent wrapup of a campaign
+
+  `GET /api/v1/livechat/campaigns/{id}/agentWrapup`
+  - Parameters: no parameters
+  - Response: an array of [Field](#field-json-format)
+
+#### Update agent wrapup for a campaign
 
   `PUT /api/v1/livechat/campaigns/{id}/agentWrapup`
-
-  - Parameters: an array of field object 
-
-  - Response: an array of field object 
+  - Parameters: an array of [Field](#field-json-format)
+  - Response: an array of [Field](#field-json-format)
 
 
-### Route Rule Json Format
+## Routing Rule
+
+### Model
+#### Routing Rule JSON Format
   Route Rule is represented as simple flat JSON objects with the following keys:  
 
   | Name | Type | Read-only | Mandatory | Description |
@@ -442,14 +474,14 @@
   | `simpleRouteToObject` | string | no | no | the rule of route , including `department` and `agent` |
   | `simpleRouteToId` | integer | yes | no | id of the route object |
   | `simpleRoutePriority` | string | no | no | the priority of the route object, including `lowest`, `low`, `normal`, `high` and `highest`. |
-  | `rules` | array | no | no | an array of [Custom Rule](#custom-rule-json-format) json object. |
+  | `rules` | array | yes | no | an array of [Custom Rule](#custom-rule-json-format) json object. |
   | `failType` | string | no | no |the type of fail routing, including `route` and `offlineMessage`. |
   | `fail.routeTobject` | string | no | no | the rule of fail route , including `department` and `agent` |
   | `fail.routeToId` | integer | yes | no | id of the route object |
   | `fail.routePriority` | string | no | no | the priority of fail route object, including `lowest`, `low`, `normal`, `high` and `highest`. |
   | `fail.offlineMessageEmails` | string  | no | no | redirect them to Offline Message Window and forward their messages to the email |
 
-### Custom Rule Json Format
+#### Custom Rule JSON Format
   Custom Rule is represented as simple flat JSON objects with the following keys:  
 
   | Name | Type | Read-only | Mandatory | Description |
@@ -463,85 +495,80 @@
   | `routeToId` | integer | yes | yes | id of the route object |
   | `routePriority` | string | no | no | the priority of the route object, including `lowest`, `low`, `normal`, `high` and `highest`. |
   
+### Endpoint
+#### Get Routing Rules of a campaign
 
-### Get settings of Routing Rules for a campaign
-
-  `GET /api/v1/livechat/campaigns/{id}/RoutingRule`
-
+  `GET /api/v1/livechat/campaigns/{id}/routingrules`
   - Parameters: No parameters
+  - Response: [Routing Rule](#routing-url-json-format)
 
-  - Response: Route Rule Object
+#### Update Routing Rules for a campaign
 
-### Update settings of Routing Rules for a campaign
+  `PUT /api/v1/livechat/campaigns/{id}/routingrules`
+  - Parameters: [Routing Rule](#routing-url-json-format)
+  - Response: [Routing Rule](#routing-url-json-format)
 
-  `PUT /api/v1/livechat/campaigns/{id}/RoutingRule`
-    
-  - Parameters: Route Rule Object
+#### Get a custom rule of a campaign
 
-  - Response: Route Rule Object
-
-### Get a custom rule for a campaign
-
-  `GET /api/v1/livechat/campaigns/{id}/RoutingRules/customRules/{customeRule_id}`
-
+  `GET /api/v1/livechat/campaigns/{id}/routingrules/customrules/{custom_rule_id}`
   - Parameters: No parameters
+  - Response: [Custom Rule](#custom-rule-json-format)
 
-  - Response: Custom Rule Object
+#### Create a new custom rule for a campaign
 
-### Create a new custom rule for a campaign
+  `POST /api/v1/livechat/campaigns/{id}/routingrules/customrules`
+  - Parameters: [Custom Rule](#custom-rule-json-format)
+  - Response: [Custom Rule](#custom-rule-json-format)
 
-  `POST /api/v1/livechat/campaigns/{id}/RoutingRules/customRules`
+#### Update a custom rule for a campaign
 
-  - Parameters: Custom Rule Object 
+  `PUT /api/v1/livechat/campaigns/{id}/routingrules/customrules/{custom_rule_id}` 
+  - Parameters: [Custom Rule](#custom-rule-json-format)
+  - Response: [Custom Rule](#custom-rule-json-format)
 
-  - Response: Custom Rule Object
+#### Delete a custom rule for a campaign
 
-### Update a custom rule for a campaign
+  `DELETE /api/v1/livechat/campaigns/{id}/routingrules/customrules/{custom_rule_id}`
+  - Parameters: No parameters
+  - Response: 200 OK
 
-  `PUT /api/v1/livechat/campaigns/{id}/RoutingRules/customRules/{customeRule_id}` 
 
-  - Parameters: Custom Rule Object
-
-  - Response: Custom Rule Object
-
-### Language Json Format
+## Language
+### Model
+#### Campaign Language JSON Format
   Language is represented as simple flat JSON objects with the following keys:  
 
   | Name | Type | Read-only | Mandatory | Description |
   | - | - | :-: | :-: | - |
-  | `isUseLanguageText` | boolean | no | yes | whether use default language text or not. |
+  | `isUseDefaultLanguageText` | boolean | no | yes | whether use default language text or not. |
   | `isRTL` | boolean | no | no | whether the language is from right to left. |
   | `languageTexts` | array | no | no | an array of [Language Text](#language-text-json-format) |
 
-### Language Text Json Format   
+#### Language Text JSON Format   
   Language Text is represented as simple flat JSON objects with the following keys:  
 
   | Name | Type | Read-only | Mandatory | Description |
   | - | - | :-: | :-: | - |
   | `category` | string | yes | yes | the module of custom language, including `buttons`, `fields`, `prompts`, `systemMessages`, `audioChat`, `videoChat`, `screenSharing`, `transcriptEmail`, `mobile`, `embedded` and `chatbot`. |
   | `name` | string | yes | yes | the name of the language item |
-  | `description` | string | yes | no | the description of the custom language | 
   | `defaultText` | string | yes | no | the default text of field of the custom language. |
   | `currentText` | string | no | no | current text of field of the custom language. |
   | `macros` | string | yes | no | macors which used in the field of the custom language. |
 
-### Get settings of Language for a campaign
+### Endpoint
+#### Get Language for a campaign
 
   `GET /api/v1/livechat/campaigns/{id}/language`
-
   - Parameters: No parameters
-
-  - Response: Language Object
+  - Response: [Campaign Language](#campaign-language-json-format)
     
-### Update settings of Language for a campaign
+#### Update settings of Language for a campaign
 
   `PUT /api/v1/livechat/campaigns/{id}/language`
+  - Parameters: [Campaign Language](#campaign-language-json-format)
+  - Response: [Campaign Language](#campaign-language-json-format)
 
-  - Parameters: Language Object
-      
-  - Response: Language Object
-    
-## Canned Message
+# Canned Message
   You need `Manage Pulbic Canned Messages` permission to manage canned message.
   + `GET /api/v1/livechat/cannedMessages` -get list of canned Message
   + `GET /api/v1/livechat/cannedMessages/{id}`  -get a single canned Message
@@ -549,7 +576,8 @@
   + `PUT /api/v1/livechat/cannedMessages/{id}`  -update a canned Message
   + `DELETE /api/v1/livechat/cannedMessages/{id}`  -remove a canned Message
     
-### Canned Message Json Format
+## Model
+### Canned Message JSON Format
   Canned Message is represented as simple flat JSON objects with the following keys:  
 
   | Name | Type | Read-only | Mandatory | Description |
@@ -561,47 +589,38 @@
   | `categoryId` | integer | no | no | id of the category of the canned message, default is `0` |
   | `isPrivate` | boolean | no | no | whether the canned message is private or not, default is `false` |
     
-### Get list of canned messages 
+## Endpoint
+### Get list of canned messages
 
   `GET /api/v1/livechat/cannedMessages`
-
   - Parameters: No parameters
-      
-  - Response: An array of Canned Message Object.
+  - Response: An array of [Canned Message](#canned-message-json-format)
     
 ### Get a single canned message 
 
   `GET /api/v1/livechat/cannedMessages/{id}`
-    
   - Parameters: No parameters
-  
-  - Response: Canned Message Object
+  - Response: [Canned Message](#canned-message-json-format)
     
 ### Create a new canned message 
 
   `POST /api/v1/livechat/cannedMessages`
-    
-  - Parameters: Canned Message Object
-      
-  - Response: Canned Message Object
+  - Parameters: [Canned Message](#canned-message-json-format)
+  - Response: [Canned Message](#canned-message-json-format)
     
 ### Update a canned message 
 
   `PUT /api/v1/livechat/cannedMessages/{id}`
-    
-  - Parameters: Canned Message Object
-      
-  - Response: Canned Message Object
+  - Parameters: [Canned Message](#canned-message-json-format)
+  - Response: [Canned Message](#canned-message-json-format)
     
 ### Remove a canned message 
 
   `DELETE /api/v1/livechat/cannedMessages/{id}`
-    
   - Parameters: No parameters
-      
-  - Response: Status: 200 OK   
+  - Response: 200 OK   
     
-## Canned Message Category
+# Canned Message Category
   You need `Manage Pulbic Canned Messages` permission to manage canned message category.
   + `GET /api/v1/livechat/cannedMessageCategories` -get list of canned Messages Categories
   + `GET /api/v1/livechat/cannedMessageCategories/{id}`  -get a single canned Messages Category
@@ -609,7 +628,8 @@
   + `PUT /api/v1/livechat/cannedMessageCategories/{id}`  -update a canned Messages Category
   + `DELETE /api/v1/livechat/cannedMessageCategories/{id}`  -remove a canned Messages Category
     
-### Canned Message Category Json Format
+## Model
+### Canned Message Category JSON Format
   Canned Message Category is represented as simple flat JSON objects with the following keys:  
 
   | Name | Type | Read-only | Mandatory | Description |
@@ -618,48 +638,39 @@
   | `name` | string  | no | yes |name of the canned message category. |
   | `parentId` | integer  | no | yes | id of the parent category of the canned message category. |
   | `isPrivate` | string  | no | yes | whether the canned message category is private or not. |
-    
+
+## Endpoint
 ### Get list of canned message categories
 
   `GET /api/v1/livechat/cannedMessageCategories`
-    
   - Parameters: No parameters
-      
-  - Response: An array of Canned Message Category Object.
+  - Response: An array of [Canned Message Category](#canned-message-category-json-format)
     
 ### Get a single canned message category
 
   `GET /api/v1/livechat/cannedMessageCategories/{id}`
-    
   - Parameters: No parameters
-      
-  - Response: Canned Message Category Object.
+  - Response: [Canned Message Category](#canned-message-category-json-format)
     
 ### Create a new canned message category
 
   `POST /api/v1/livechat/cannedMessageCategories`
-    
-  - Parameters: Canned Message Category Object.
-      
-  - Response: Canned Message Category Object.
+  - Parameters: [Canned Message Category](#canned-message-category-json-format)
+  - Response: [Canned Message Category](#canned-message-category-json-format)
     
 ### Update a canned message category
  
   `PUT /api/v1/livechat/cannedMessageCategories/{id}`
-    
-  - Parameters: Canned Message Category Object.
-      
-  - Response: Canned Message Category Object.
+  - Parameters: [Canned Message Category](#canned-message-category-json-format)
+  - Response: [Canned Message Category](#canned-message-category-json-format)
     
 ### Remove a canned message category
  
   `DELETE /api/v1/livechat/cannedMessageCategories/{id}`
-    
   - Parameters: No parameters
-      
-  - Response: Status: 200 OK   
+  - Response: 200 OK   
     
-## Department
+# Department
   You need `Manage Settings` permission to manage department.
   + `GET /api/v1/livechat/departments` -get list of departments
   + `GET /api/v1/livechat/departments/{id}`  -get a single department
@@ -667,7 +678,8 @@
   + `PUT /api/v1/livechat/departments/{id}`  -update a department
   + `DELETE /api/v1/livechat/departments/{id}`  -remove a department
     
-### Department Json Format
+## Model
+### Department JSON Format
   Department is represented as simple flat JSON objects with the following keys:  
 
   | Name | Type | Read-only | Mandatory | Description |
@@ -682,48 +694,39 @@
   | `backupDepartmentId` | integer | no | no | id of back up department |
   | `offlineMessageTo` | string | no | no | object which mail offline messages of the department to, including `allAgents` and `emailAddresses` |
   | `emailAddresses` | string | no | no | the email addresses which mail offline messages of the department to |
-    
+
+## Endpoint
 ### Get list of departments 
 
   `GET /api/v1/livechat/departments`
-    
   - Parameters: No parameters
-      
-  - Response: An array of Department Object.
+  - Response: An array of [Department](#department-json-format)
     
 ### Get a single department 
 
   `GET /api/v1/livechat/departments/{id}`
-    
   - Parameters: No parameters
-      
-  - Response: Department Object.
+  - Response: [Department](#department-json-format)
     
 ### Create a new department 
 
   `POST /api/v1/livechat/departments`
-    
-- Parameters: Department Object.
-
-- Response: Department Object.
+  - Parameters: [Department](#department-json-format)
+  - Response: [Department](#department-json-format)
     
 ### Update a department 
 
   `PUT /api/v1/livechat/departments/{id}`
-    
-  - Parameters: Department Object.
-      
-  - Response: Department Object.
+  - Parameters: [Department](#department-json-format)
+  - Response: [Department](#department-json-format)
     
 ### Remove a department
- 
   `DELETE /api/v1/livechat/departments/{id}`
-    
   - Parameters: No parameters
-      
-  - Response: Status: 200 OK   
+  - Response: 200 OK   
 
-## Custom Away Status
+
+# Custom Away Status
   You need `Manage Settings` permission to manage custom away status.
   + `GET /api/v1/livechat/customAwayStatus` - get list of custom away status
   + `GET /api/v1/livechat/customAwayStatus/{id}` - get a single custom away status
@@ -731,7 +734,8 @@
   + `PUT /api/v1/livechat/customAwayStatus/{id}` - update a custom away status
   + `DELETE /api/v1/livechat/customAwayStatus/{id}` - remove a custom away status
 
-### Custom Away Status Json Format
+## Model
+### Custom Away Status JSON Format
   Custom Away Status is represented as simple flat JSON objects with the following keys:  
 
   | Name | Type | Read-only | Mandatory | Description |
@@ -739,49 +743,40 @@
   | `id` | integer | yes | no | id of the custom away status. |
   | `name` | string | no | yes | name of the custom away status. |
   | `isVisible` | boolean | no | no | whether the custom away status is visible or not. |
-  | `order` | integer | no | no | the order of the custom away status |
 
+
+## Endpoint
 ### Get list of custom away status 
  
   `GET /api/v1/livechat/customAwayStatus`
-
   - Parameters: No parameters
-
-  - Response: An array of Custom Away Status Object.
+  - Response: An array of [Custom Away Status](#custom-away-status-json-format)
 
 ### Get a single custom away status 
 
   `GET /api/v1/livechat/customAwayStatus/{id}`
-
   - Parameters: No parameters
-
-  - Response: Custom Away Status Object.
+  - Response: [Custom Away Status](#custom-away-status-json-format)
 
 ### Create a new custom away status 
 
   `POST /api/v1/livechat/customAwayStatus`
-
-  - Parameters: Custom Away Status Object.
-
-  - Response: Custom Away Status Object.
+  - Parameters: [Custom Away Status](#custom-away-status-json-format)
+  - Response: [Custom Away Status](#custom-away-status-json-format)
 
 ### Update a custom away status 
 
   `PUT /api/v1/livechat/customAwayStatus/{id}`
- 
-  - Parameters: Custom Away Status Object.
-  
-  - Response: Custom Away Status Object.
+  - Parameters: [Custom Away Status](#custom-away-status-json-format)
+  - Response: [Custom Away Status](#custom-away-status-json-format)
     
 ### Remove a custom away status 
 
   `DELETE /api/v1/livechat/customAwayStatus/{id}`
-    
   - Parameters: No parameters
-      
-  - Response:   Status: 200 OK   
+  - Response: 200 OK   
     
-## Ban
+# Ban
   You need `Manage Ban List` permission to manage ban list.
   + `GET /api/v1/livechat/bans` -get list of bans
   + `GET /api/v1/livechat/bans/{id}`  -get a single ban
@@ -789,7 +784,8 @@
   + `PUT /api/v1/livechat/bans/{id}`  -update a ban
   + `DELETE /api/v1/livechat/bans/{id}`  -remove a ban
 
-### Ban Json Format
+## Model
+### Ban JSON Format
   Ban is represented as simple flat JSON objects with the following keys:  
 
   | Name | Type | Read-only | Mandatory | Description |
@@ -799,54 +795,46 @@
   | `visitorId` | string | no | no | visitor's id of the ban if `type` is `visitor`  | 
   | `ipAddress` | string  | no | yes | ip address of the ban if `type` is `ip`, it can be a specific ip `192.168.8.113` or ip range `192.168.8.0/24` or `192.168.8.0-192.168.8.255` |
   | `comment` | string  | no | no | comment of the ban. |
-  
+
+## Endpoint
 ### Get list of bans
 
   `GET /api/v1/livechat/bans`
-
   - Parameters: No parameters
-
-  - Response: An array of Ban Json Object.
+  - Response: An array of [Ban](#ban-json-format)
 
 ### Get a single ban
 
   `GET /api/v1/livechat/bans/{id}`
-
   - Parameters: No parameters
-
-  - Response: Ban Json Object.
+  - Response: [Ban](#ban-json-format)
 
 ### Create a new ban 
 
   `POST /api/v1/livechat/bans`
-
-  - Parameters: n Json Object.
-
-  - Response: Ban Json Object.
+  - Parameters: [Ban](#ban-json-format)
+  - Response: [Ban](#ban-json-format)
 
 ### Update a ban
 
   `PUT /api/v1/livechat/bans/{id}`
-
-  - Parameters: n Json Object.
-
-  - Response: Ban Json Object.
+  - Parameters: [Ban](#ban-json-format)
+  - Response: [Ban](#ban-json-format)
 
 ### Remove a ban
 
   `DELETE /api/v1/livechat/bans/{id}`
-
   - Parameters: No parameters
+  - Response: 200 OK   
 
-  - Response:   Status: 200 OK   
-
-## Conversion Action
+# Conversion Action
   You need `Manage Settings` permission to manage conversion action.
   + `GET /api/v1/livechat/conversionsActions` -get list of visitor segments
   + `GET /api/v1/livechat/conversionsActions/{id}`  -get a visitor segment
   + `POST /api/v1/livechat/conversionsActions` -create a new visitor segment
 
-### Conversion Action Json Format
+## Model
+### Conversion Action JSON Format
   Conversion Action is represented as simple flat JSON objects with the following keys:  
 
   | Name | Type | Read-only | Mandatory | Description |
@@ -854,7 +842,7 @@
   | `id` | integer | yes | no |id of the conversion action. |
   | `name` | string | no | yes |  name of the conversion action. |
   | `isEnable` | boolean | no | no | whether the conversion action is enable or not. |
-  | `type` | string | no | no | type of the conversion action, including `url`, `customVariable` and `setByApi`. |
+  | `type` | string | no | no | type of the conversion action, including `url`, `customVariable` and `api`. |
   | `customVariable` | string  | no | no |  the name of the custom variable, available when `type` is `customVariable`. |
   | `matchType` | string | no | no |  match type of the conversion action, available when `type` is `customVariable` or `url`. |
   | `matchValue` | string | no | no |  match value of the conversion action, available when `type` is `customVariable` or `url`. |
@@ -864,39 +852,33 @@
   | `assignValue` | string | no | no |  the value assigned for the conversion action |
   | `customVariableForAssignValue` | string | no | no |  the value come from the custom variable |
 
+
+## Endpoint
 ### Get list of conversion actions
 
   `GET /api/v1/livechat/conversionsActions`
-
   - Parameters: No parameters
-
-  - Response: An array of Conversion Action Object.
+  - Response: An array of [Conversion Action](#conversion-action-json-format)
 
 ### Get a single conversion action
 
   `GET /api/v1/livechat/conversionsActions/{id}`
-
   - Parameters: No parameters
-
-  - Response: Conversion Action Object.
+  - Response: [Conversion Action](#conversion-action-json-format)
 
 ### Create a new conversion action
 
   `POST /api/v1/livechat/conversionsActions`
-
-  - Parameters: nversion Action Object.
-
-  - Response: Conversion Action Object.
+  - Parameters: [Conversion Action](#conversion-action-json-format)
+  - Response: [Conversion Action](#conversion-action-json-format)
 
 ### Update a conversion action
 
   `PUT /api/v1/livechat/conversionsActions/{id}`
+  - Parameters: [Conversion Action](#conversion-action-json-format)
+  - Response: [Conversion Action](#conversion-action-json-format)
 
-  - Parameters: nversion Action Object.
-
-  - Response: Conversion Action Object.
-
-## Visitor Segmentation
+# Visitor Segmentation
   You need `Manage Settings` permission to manage visitor segmentation.
   + `GET /api/v1/livechat/visitorSegments` -get list of visitor segments
   + `GET /api/v1/livechat/visitorSegments/{id}`  -get a visitor segment
@@ -904,7 +886,8 @@
   + `PUT /api/v1/livechat/visitorSegments/{id}`  -update a visitor segment
   + `DELETE /api/v1/livechat/visitorSegments/{id}`  -remove a visitor segment
 
-### Visitor Segmentation Json Format
+## Model
+### Visitor Segmentation JSON Format
 Visitor Segmentation is represented as simple flat JSON objects with the following keys:  
 
   | Name | Type | Read-only | Mandatory | Description |
@@ -913,66 +896,57 @@ Visitor Segmentation is represented as simple flat JSON objects with the followi
   | `name` |string  | no | yes | name of the visitor segment.
   | `color` |string  | no | no | color of the visitor segment
   | `isEnable` |boolean  | no | no | whether the visitor segment is enable or not.
-  | `priority` |string  | no | no | priority of the visitor segment.
+  | `priority` |int  | no | no | priority of the visitor segment.
   | `description` |string  | no | no | description of the visitor segment.
   | `conditions` |[Conditions](#conditions-json-format)  | no | no | an trigger condition json object. |
-  | `notificationType` |string  | no | no |  type of notification, including `departments`, `agents` and `none`. 
-  | `notifyObjects` |array  | no | no |  an array of notify object, the object contains id and name.
+  | `notification` | string or object  | no | no | `none` or `{"agents":[1,2,3]}` or `{"agents": [1,2]"}` |
 
-### Get list of visitor segments
+## Endpoint
+### Get list of visitor segmentation
 
-  `GET /api/v1/livechat/visitorSegments`
-
+  `GET /api/v1/livechat/visitorSegmentations`
   - Parameters: No parameters
+  - Response: An array of [Visitor Segmentation](#visitor-segmentation-json-format)
 
-  - Response: An array of Visitor Segmentation Json Object.
+### Get a single visitor segmentation
 
-### Get a single visitor segment
-
-  `GET /api/v1/livechat/visitorSegments/{id}`
-
+  `GET /api/v1/livechat/visitorSegmentations/{id}`
   - Parameters: No parameters
+  - Response: [Visitor Segmentation](#visitor-segmentation-json-format)
 
-  - Response: Visitor Segmentation Json Object.
+### Create a new visitor segmentation 
 
-### Create a new visitor segment 
+  `POST /api/v1/livechat/visitorSegmentations`
+  - Parameters: [Visitor Segmentation](#visitor-segmentation-json-format)
+  - Response: [Visitor Segmentation](#visitor-segmentation-json-format)
 
-  `POST /api/v1/livechat/visitorSegments`
+### Update a visitor segmentation
 
-  - Parameters: sitor Segmentation Json Object.
+  `PUT /api/v1/livechat/visitorSegmentations/{id}`
+  - Parameters: [Visitor Segmentation](#visitor-segmentation-json-format)
+  - Response: [Visitor Segmentation](#visitor-segmentation-json-format)
 
-  - Response: Visitor Segmentation Json Object.
+### Remove a visitor segmentation
 
-### Update a visitor segment
-
-  `PUT /api/v1/livechat/visitorSegmentsbans/{id}`
-
-  - Parameters: sitor Segmentation Json Object.
-
-  - Response: Visitor Segmentation Json Object.
-
-### Remove a visitor segment
-
-  `DELETE /api/v1/livechat/visitorSegments/{id}`
-
+  `DELETE /api/v1/livechat/visitorSegmentations/{id}`
   - Parameters: No parameters
+  - Response: 200 OK   
 
-  - Response:   Status: 200 OK   
-
-## Visitor SSO Settings
+# Visitor SSO Settings
   You need `Manage Settings` permission to setting sso for a site.
   + `GET /api/v1/livechat/visitorSSO` -Get sso settings of visitor
   + `PUT /api/v1/livechat/visitorSSO`  -Update configuration of visitor
 
-### Data Mapping Json Format
+## Model
+### SSO Data Mapping JSON Format
 Data Mapping is represented as simple flat JSON objects with the following keys:  
 
   | Name | Type | Read-only | Mandatory | Description |
   | - | - | :-: | :-: | - |
-  | `ssoAttribute` |string  | no | yes | SSO attribute of the mapping. |
+  | `ssoAttribute` |string  | no | yes | SSO attribute name |
   | `comm100Field` |string  | no | yes | comm100 field name |
 
-### SignIn Options Json Format
+### Campaign SSO Options JSON Format
 SignIn Options is represented as simple flat JSON objects with the following keys:  
 
   | Name | Type | Read-only | Mandatory | Description |
@@ -981,48 +955,78 @@ SignIn Options is represented as simple flat JSON objects with the following key
   | `signInType` |string  | no | no | type of the sign in, including `no`, `optional` and `required`. |
   | `isSkipPrechat` |boolean  | no | no | whether the pre-chat form is skipped when visitors sign in. |
 
-### Visitor SSO Settings Json Format
+### Visitor SSO Settings JSON Format
 Visitor SSO Settings is represented as simple flat JSON objects with the following keys:  
 
   | Name | Type | Read-only | Mandatory | Description |
   | - | - | :-: | :-: | - |
-  |id |integer  | yes | no |id of the sso settings.
-  |siteId |integer  | yes | no |id of the site which the visitor sso belongs to.
-  |isEnable|boolean  | no | yes |  whether visitor sso is enable or not.
-  |signInUrl|string  | no | no | url which visitor sign in
-  |vertificationCertificate|string  | no | no | infomation of the Identity Provider Verification Certificate.
-  |certificateFileName|string  | no | no |  file name of the certificate.
-  |dataMappings|array  | no | no |  an array of [data mapping](#data-mapping-json-format) json object.
-  |signInOptions|array  | no | no |  an array of [SignIn Options](#singin-options-json-format) json object.
+  | `siteId` |integer  | yes | no |id of the site which the visitor sso belongs to. |
+  | `isEnable` |boolean  | no | yes |  whether visitor sso is enable or not. |
+  | `signInUrl` |string  | no | no | url which visitor sign in |
+  | `idpCertificate` | string  | no | no | base64 of the Identity Provider Verification Certificate content. |
+  | `idpCertificateFileName` |string  | no | no |  file name of the certificate. |
+  | `dataMappings` |array  | no | no |  an array of [SSO Data mapping](#sso-data-mapping-json-format) |
+  | `campaignSSOOptions` |array  | no | no |  an array of [SignIn Options](#singin-options-json-format) |
 
+## Endpoint
 ### Get sso settings of visitor
 
   `GET /api/v1/livechat/visitorSSO`
-
   - Parameters: No parameters
-
-  - Response: Visitor SSO Settings Json Object.
+  - Response: [Visitor SSO Settings](#visitor-sso-settings-json-format)
 
 ### Update sso settings of visitor
 
   `PUT /api/v1/livechat/visitorSSO`
+  - Parameters: [Visitor SSO Settings](#visitor-sso-settings-json-format)
+  - Response: [Visitor SSO Settings](#visitor-sso-settings-json-format)
 
-  - Parameters: Visitor SSO Settings Json Object.
 
-  - Response: Visitor SSO Settings Json Object.
+# Auto allocation
+ You need `Manage Settings` permission to config for a site.
+  + `GET /api/v1/livechat/autoAllocation` - Get auto allocation configuration 
+  + `PUT /api/v1/livechat/autoAllocation`  - Update auto allocation configuration 
+## Model
 
-## Live Chat Config
+### Auto Allocation JSON format
+
+  Auto Allocation is represented as simple flat JSON objects with the following keys:
+
+  | Name | Type | Read-only | Mandatory | Description |
+  | - | - | :-: | :-: | - |
+  | `isEnable` | boolean | no | yes | whether the auto allocation is enable or not. |
+  | `allocationRule` | string | no | no | rule of chat allocation, including `load banlancing` 銆乣round robin` and `capability weighted` |
+  | `isLastChattedPreferred` | boolean | no | no | whether last-chatted agent is prefer or not |
+  | `isMaxChatForAllAgents` | boolean | no | no | whether to set the same maximum number of chats for all agents |
+  | `maxChatForAllAgents` | integer | no | no | maximum number of chats of all agents |
+  | `isAllocateChatWhenAgentInAudioVideo` | boolean | no | no | whether allocate chats to agents who are having audio or video chats |
+  | `isAllowAgentManualAcceptChat` | boolean | no | no | whether allow agent manual accept chat in agent console |
+
+  ## Endpoint 
+
+  ### Get auto allocation configuration 
+
+  `GET /api/v1/livechat/autoAllocation`
+  - Parameters: No Parameters
+  - Response: [Auto Allocation](#auto-allocation-json-format)
+
+  ### Update auto allocation configuration
+
+  `PUT /api/v1/livechat/autoAllocation`
+  - Parameters: [Auto Allocation](#auto-allocation-json-format)
+  - Response: [Auto Allocation](#auto-allocation-json-format)
+
+
+# Live Chat Config
   You need `Manage Settings` permission to config for a site.
   + `GET /api/v1/livechat/configs` -Get configuration for a site
   + `PUT /api/v1/livechat/configs`  -Update configuration of a site
 
-## TODO add auto location configuration
-
-### Live Chat Config Json Format
+### Live Chat Config JSON Format
   Live Chat Config is represented as simple flat JSON objects with the following keys:  
 
-  |name| Type| Read-only    | Mandatory | Description   
-  | ------------- |--------------------- | ---------- | -------------------- | ------------------
+  | Name | Type | Read-only | Mandatory | Description |
+  | - | - | :-: | :-: | - |
   | `siteId` | integer  | yes | no |id of the site which the configuration belongs to. |
   | `isEnableMultipleCampaigns` | boolean  | no | no |  whether multiple campaigns are enable or not in the site. |
   | `isEnableAutoAllocation` | boolean  | no | no | whether auto allocation is enable or not in the site. |
@@ -1043,356 +1047,385 @@ Visitor SSO Settings is represented as simple flat JSON objects with the followi
 ### Get configurationuration for a site
 
   `GET /api/v1/livechat/configs`
-
   - Parameters: No parameters
-
   - Response: Site Config Json Object.
 
 ### Update configuration of a site
 
   `PUT /api/v1/livechat/configs`
-
   - Parameters: te Config Json Object.
-
   - Response: Site Config Json Object.
 
-## Secure Form
+# Secure Form
   + `GET /api/v1/livechat/secureForms` -get list of secure forms
   + `GET /api/v1/livechat/secureForms/{id}`  -get a secure form
   + `POST /api/v1/livechat/secureForms` -create a new secure form
   + `PUT /api/v1/livechat/secureForms/{id}`  -update a secure form
   + `DELETE /api/v1/livechat/secureForms/{id}`  -remove a secure form
 
-### Secure Form Json Format
+## Model
+### Secure Form JSON Format
 Secure Form is represented as simple flat JSON objects with the following keys:  
 
-|name| Type| Read-only    | Mandatory | Description   
-| ------------- |--------------------- | ---------- | -------------------- | ------------------
-|id |integer  | yes | no |id of the secure form.
-|name| string  | no | yes |  name of the secure form.
-|description| string  | no | no | description of the secure form.
-|fields| Array | no | no |an array of [field](#field) object
+  | Name | Type | Read-only | Mandatory | Description |
+  | - | - | :-: | :-: | - |
+  | `id` | integer  | yes | no | id of the secure form. |
+  | `name` | string  | no | yes | name of the secure form. |
+  | `description` | string  | no | no | description of the secure form. |
+  | `fields` | array | no | no | an array of [Field](#field-json-format) |
 
+
+## Endpoint
 ### Get list of secure forms
 
   `GET /api/v1/livechat/secureForms`
-
   - Parameters: No parameters
-
-  - Response: An array of Secure Form Json Object.
+  - Response: An array of [Secure Form](#secure-form-json-format)
 
 ### Get a single secure form
 
   `GET /api/v1/livechat/secureForms/{id}`
-
   - Parameters: No parameters
-
-  - Response: Secure Form Json Object.
+  - Response: [Secure Form](#secure-form-json-format)
 
 ### Create a new secure form
 
   `POST /api/v1/livechat/secureForms`
-
-  - Parameters: cure Form Json Object.
-
-  - Response: Secure Form Json Object.
+  - Parameters: [Secure Form](#secure-form-json-format)
+  - Response: [Secure Form](#secure-form-json-format)
 
 ### Update a secure form
 
   `PUT /api/v1/livechat/secureForms/{id}`
-
-  - Parameters: cure Form Json Object.
-      
-  - Response: Secure Form Json Object.
+  - Parameters: [Secure Form](#secure-form-json-format)
+  - Response: [Secure Form](#secure-form-json-format)
 
 ### Remove a secure form
 
   `DELETE /api/v1/livechat/secureForms/{id}`
-
   - Parameters: No parameters
+  - Response: 200 OK   
 
-  - Response:   Status: 200 OK   
+# Webhook
+  + `GET /api/v1/livechat/webhooks` - Get list of webhooks
+  + `POST /api/v1/livechat/webhooks` - Create a new webhook
+  + `PUT /api/v1/livechat/webhooks/{id}` - Update a webhook
+  + `DELETE /api/v1/livechat/webhooks/{id}`  - Remove a webhook
 
-## Webhook
-  + `GET /api/v1/livechat/webhooks` -Get list of webhooks
-  + `POST /api/v1/livechat/webhooks` -Create a new webhook
-  + `DELETE /api/v1/livechat/webhooks/{id}`  -Remove a webhook
-
-### Webhook Json Format
+## Model
+### Webhook JSON Format
 Webhook is represented as simple flat JSON objects with the following keys:  
 
-|name| Type| Read-only    | Mandatory | Description   
-| ------------- |--------------------- | ---------- | -------------------- | ------------------
-|id |integer  | yes | no |id of the webhook.
-|event| string  | no | yes | event of webhook, including `offlineMessageSubmitted`, `chatStarted`, `chatEnded` and `chatWrapedUp`.
-|targetUrl| string  | no | yes |  target url of the webhook.
+  | Name | Type | Read-only | Mandatory | Description |
+  | - | - | :-: | :-: | - |
+  |`id` | integer  | yes | no | id of the webhook. |
+  |`event`| string  | no | yes | event of webhook, including `offlineMessageSubmitted`, `chatStarted`, `chatEnded` and `chatWrappedUp`. |
+  |`targetUrl`| string  | no | yes |  target url of the webhook. |
 
+## Endpoint
 ### Get list of webhooks
 
   `GET /api/v1/livechat/webhooks`
-
   - Parameters: No parameters
-
-  - Response: An array of Webhook Json Object.
+  - Response: An array of [Webhook](#webhook-json-format)
 
 ### Create a new webhook
 
   `POST /api/v1/livechat/webhooks`
+  - Parameters: [Webhook](#webhook-json-format)
+  - Response: [Webhook](#webhook-json-format)
 
-  - Parameters: bhook Json Object.
+### Update a webhook
 
-  - Response: Webhook Json Object.
+  `PUT /api/v1/livechat/webhooks/{id}`
+  - Parameters: [Webhook](#webhook-json-format)
+  - Response: [Webhook](#webhook-json-format)
 
 ### Remove a webhook
 
   `DELETE /api/v1/livechat/webhooks/{id}`
-
   - Parameters: No parameters
+  - Response: 200 OK   
 
-  - Response:   Status: 200 OK   
-
-## Custom Variables
+# Custom Variables
   + `GET /api/v1/livechat/customVariables` -Get list of custom variables
   + `POST /api/v1/livechat/customVariables` -Create a new custom variable
   + `PUT /api/v1/livechat/customVariables/{id}`  -Update a custom variable
   + `DELETE /api/v1/livechat/customVariables/{id}`  -Remove a custom variable
 
-### Custom Variable Json Format
+## Model
+### Custom Variable JSON Format
 Custom Variable is represented as simple flat JSON objects with the following keys:  
 
-|name| Type| Read-only    | Mandatory | Description   
-| ------------- |--------------------- | ---------- | -------------------- | ------------------
-|id |integer  | yes | no |id of the custom variable.
-|name| string  | no | yes | name of the custom variable.
-|type| string  | no | yes | type of the custom variable., including `text`, `integer` and `decimal`.
-|value| string  | no | nos | value of the custom variable.
-|hyperlink| string  | no | no |  hyperlink of the custom variable.
+  | Name | Type | Read-only | Mandatory | Description |
+  | - | - | :-: | :-: | - |
+  | `id` | integer  | yes | no | id of the custom variable. |
+  | `name` | string  | no | yes | name of the custom variable |.
+  | `type` | string  | no | yes | type of the custom variable., including `text`, `integer` and `decimal`. |
+  | `value` | string  | no | nos | value of the custom variable. |
+   |`hyperlink` | string  | no | no |  hyperlink of the custom variable. |
 
 ### Get list of Custom Variables
 
   `GET /api/v1/livechat/customVariables`
-
   - Parameters: No parameters
-
-  - Response: An array of Custom Variable Object.
+  - Response: An array of [Custom Variable](#custom-variable-json-format)
 
 ### Create a new Custom Variable
 
   `POST /api/v1/livechat/customVariables`
-
-  - Parameters: stom Variable Object.
-
-  - Response: Custom Variable Object.
+  - Parameters: [Custom Variable](#custom-variable-json-format)
+  - Response: [Custom Variable](#custom-variable-json-format)
 
 ### Update a Custom Variable
 
   `PUT /api/v1/livechat/customVariables/{id}`
 
-  - Parameters: Custom Variable Object.
-
-  - Response: Custom Variable Object.
+  - Parameters: [Custom Variable](#custom-variable-json-format)
+  - Response: [Custom Variable](#custom-variable-json-format)
 
 ### Remove a Custom Variable
 
   `DELETE /api/v1/livechat/customVariables/{id}`
-
   - Parameters: No parameters
+  - Response: 200 OK   
 
-  - Response: Status: 200 OK   
-
-## Agent 
+# Agent 
   - `GET /api/v1/livechat/agents/{id}` -Get agent info in livechat  
   - `PUT /api/v1/livechat/agents/{id}` -Update agent info in livechat
 
-### Agent Json Format
+## Model
+### Agent JSON Format
  Agent is represented as simple flat JSON objects with the following keys:  
 
-|name| Type| Read-only    | Mandatory | Description   
-| ------------- |--------------------- | ---------- | -------------------- | ------------------ 
-|id | integer  | yes | yes | id of the agent.
-|status| string  | no | no | status of the agent, including online, away, offline
-|ongoingChats| string  | yes | no | total number of ongoing chats the agent has
-|departments| array  | yes | no | an array of department json object
-|maxChatsCount| integer  | no | no | the maximum number of concurrent chats that will be automatically routed to the agent when Auto Accept Chat Requests is enabled
+  | Name | Type | Read-only | Mandatory | Description |
+  | - | - | :-: | :-: | - |
+  | `id` | integer  | yes | yes | id of the agent.
+  | `status` | string  | no | no | status of the agent, including `online`, `away`, `offline` and custom away status defined by site |
+  | `ongoingChats` | string  | yes | no | total number of ongoing chats the agent has |
+  | `departments` | array  | no | no | an array of department id |
+  | `maxChatsCount` | integer  | no | no | the maximum number of concurrent chats that will be automatically routed to the agent when Auto Accept Chat Requests is enabled |
+  | `isAcceptAllocation` | boolean | no | no | whether the agent accept auto allocation |
 
 ### Get agent info in livechat  
 
   `GET /api/v1/livechat/agents/{id}`
-
   - Parameters: No parameters
-
-  - Response:   Agent Json Object.
+  - Response: [Agent](#agent-json-format)
 
 ### Update agent info in livechat
 
   `PUT /api/v1/livechat/agents/{id}`
+  - Parameters: [Agent](#agent-json-format)
+  - Response: [Agent](#agent-json-format)
 
-  - Parameters: Agent Object.
+# Chat
+  + `Get /api/v1/livechat/chats` - Get chats list.
+  + `Get /api/v1/livechat/chats/{chat_id}` - Get a single chat.
 
-  - Response: Agent Object.
-
-## Chat
-  + `Get /api/v1/livechat/chats` -Get chats list.
-  + `Get /api/v1/livechat/chats/{chat_id}` -Get a single chat.
-  + `Get /api/v1/livechat/chats/missedAndRefused` -Get missed and refused chats list.
-  + `Get /api/v1/livechat/chats/agentChats` -Get agents' chats list.
-
-### Custom Field Json Format
+## Model
+### Custom Field Value JSON Format
  Custom field is represented as simple flat JSON objects with the following keys:  
 
-|name| Type| Read-only    | Mandatory | Description   
-| ------------- |--------------------- | ---------- | -------------------- | ------------------ 
-|id | integer  | yes | no |id of the custom field.
-|name| string | no | yes |  |name of the custom field.
-|value| string | no | no | |value of the custom field.
+  | Name | Type | Read-only | Mandatory | Description |
+  | - | - | :-: | :-: | - |
+  | `id` | integer  | yes | no | id of the custom field. |
+  | `name` | string | no | yes | name of the custom field. |
+  | `value` | string | no | no | value of the custom field. |
 
-### Custom Variable Json Format
- Custom field is represented as simple flat JSON objects with the following keys:  
+### Custom Variable Value JSON Format
+ Custom variable is represented as simple flat JSON objects with the following keys:  
 
-|name| Type| Read-only    | Mandatory | Description   
-| ------------- |--------------------- | ---------- | -------------------- | ------------------ 
-|id | integer  | yes | no |id of the custom variable.
-|name| string | no | yes |  |name of the custom variable.
-|value| string | no | no | |value of the custom variable.
+  | Name | Type | Read-only | Mandatory | Description |
+  | - | - | :-: | :-: | - | 
+  | `id` | integer  | yes | no | id of the custom variable. |
+  | `name` | string | no | yes | name of the custom variable. |
+  | `value` | string | no | no | value of the custom variable. |
 
-## Attachment Json Foramt
+### Attachment Json Foramt
  Attachment is represented as simple flat JSON objects with the following keys:  
 
-|name| Type| Read-only    | Mandatory | Description   
-| ------------- |--------------------- | ---------- | -------------------- | ------------------ 
-|id | integer  | yes | no |id of the attachment.
-|name| string | no | yes |  |name of the attachment.
-|uri| string | no | no | |uri of the attachment.
+  | Name | Type | Read-only | Mandatory | Description |
+  | - | - | :-: | :-: | - | 
+  | `name` | string | no | yes | name of the attachment. |
+  | `uri` | string | no | no | uri of the attachment. |
 
-### Chat Json Format 
+### Chat Message Json Format 
+  Chat Message is represented as simple flat JSON objects with the following keys:
+
+  | Name | Type | Read-only | Mandatory | Description |
+  | - | - | :-: | :-: | - | 
+  | `time` | datetime  | no | no | the time of this message sent |
+  | `sender` | string | no | no | name of this message's sender |
+  | `type` | stirng | no | no | type of this message, maybe `agent` or `visitor` or `system` |
+  | `content` | string | no | no | content of this message's sender |
+
+### Chat Wrapup Json Format
+  Chat Wrapup is represented as simple flat JSON objects with the following keys:
+
+  | Name | Type | Read-only | Mandatory | Description |
+  | - | - | :-: | :-: | - | 
+  | `category` | string | no | no | category of this chat's wrapup |
+  | `comment` | stirng | no | no | comment of this chat's wrapup |
+  | `fields` | array | no | no | array of [Custom Field Value](#custom-field-value-json-format) |
+
+### Post-Chat Survey Json Format
+  Post Chat Survey is represented as simple flat JSON objects with the following keys:
+
+  | Name | Type | Read-only | Mandatory | Description |
+  | - | - | :-: | :-: | - | 
+  | `ratingGrade` | string | no | no | rating grade of this chat's suevey |
+  | `ratingComment` | stirng | no | no | rating comment of this chat's suevey |
+  | `fields` | array | no | no | array of [Custom Field Value](#custom-field-value-json-format) |
+
+### Chat JSON Format 
  Chat is represented as simple flat JSON objects with the following keys:  
 
-|name| Type| Read-only    | Mandatory | Description   
-| ------------- |--------------------- | ---------- | -------------------- | ------------------ 
-|id | integer  | yes | yes | id of the chat.
-|ssoUserId| integer | yes | no | |user id of sso.
-|summary| string | no | no | |summary of the chat.
-|category| string | no | no | | the category which the chat belongs to, including `inquiry`, `suggestion` , `complaint` and `junk`.
-|name| string | no | no | | name of the visitor
-|email| string | no | no | | email of the visitor
-|phone| string | no | no | | phone of the visitor
-|productService| string | no | no | | product/service the visitor selected in the pre-chat window. Agent can also update the value while chatting with visitors.
-|department| string | no | no | | department the visitor selected in the pre-chat window. Agent can also update the value while chatting with visitors.
-|agents| string | no | no | | agent who participate in the chat, separated by comma
-|customFields| Array | no | no | | values of custom fields entered by visitors in the pre-chat window. An array of [Custom Field](#custom-field-json-format).
-|customVariable| Array | no | no | | information of custom variables captured from the web page visitors viewed. An array of [Custom Variable](#custom-variable-json-format).
-|startTime| string | no | no | | time when the chat started
-|waitingTime| string | no | no | | amount of time a visitor has been waiting before his/her chat request was accepted
-|endTime| string | no | no | | time when the chat ended
-|chatTranscript| string | no | no | | content of the chat
-|attachments| Array | no | no | | files the operator send to the visitor or vice versa as well as the screenshots sent to the operator by the visitor through Comm100 Screen Capture. An array of [Attachment Json](#attachment-json-foramt)
-|rating| string | no | no | | rating on the Agent submitted by the visitor
-|ratingComment| string | no | no | | comment on Agent's customer service submitted by the visitor
-|operatorComment| string | no | no | | notes added for this chat by the operator
+  | Name | Type | Read-only | Mandatory | Description |
+  | - | - | :-: | :-: | - |  
+  | `id` | integer  | yes | yes | id of the chat. |
+  | `ssoUserId` | string | yes | no | sso id of visitor |
+  | `name` | string | no | no | name of the visitor |
+  | `email` | string | no | no | email of the visitor |
+  | `department` | string | no | no | department the visitor selected in the pre-chat window. Agent can also update the value while chatting with visitors. |
+  | `agents` | array | no | no | agent name who participate in the chat |
+  | `prechatFields` | array | no | no | values of custom fields entered by visitors in the pre-chat window. An array of [Custom Field Value](#custom-field-value-json-format). |
+  | `customVariables` | array | no | no | information of custom variables captured from the web page visitors viewed. An array of [Custom Variable Value](#custom-variable-value-json-format). |
+  | `requestTime` | datetime | no | no | time when the chat requested |
+  | `waitingTime` | string | no | no | amount of time a visitor has been waiting before his/her chat request was accepted |
+  | `endTime` | datetime | no | no | time when the chat ended |
+  | `chatTranscript` | array | no | no | array of [Chat Message](#chat-message-json-format) |
+  | `attachments` | array | no | no | files the operator send to the visitor or vice versa as well as the screenshots sent to the operator by the visitor through Comm100 Screen  Capture. An array of [Attachment](#attachment-json-foramt) |
+  | `postChat` | [Post-Chat Survey](#post-chat-survey-json-format) | no | no | post chat survey of this chat |
+  | `wrapup` | [Chat Wrapup](#chat-wrapup-json-format) | no | no | agent wrapup for this chat |
 
+
+## Endpoint
 ### Get chats list
 - End Point 
   `Get /api/v1/livechat/chats`
 
-- Parameters: - `dateInterval` - the date interval of the chat.
-  optional：
+- Parameters: 
+  - `timeFrom` - the beginning of query time
+  - `timeTo` - the end of the query time
+  optional锛�
+  - `timezone` - time zone of the `timeFrom` and `timeTo`, defaults to UTC time
   - `agentId` - id of the agent who participate in the chat.
   - `departmentId` - id of the department which the chat belongs to.
-  - `category` - the category which the chat belongs to, including `inquiry`, `suggestion` , `complaint` and `junk`.
+  - `categoryId` - id of the category which the chat belongs to 
   - `keywords` - the key words of inquiring the chat
-  - `conditions` - the condition list of inquiring the chat
-    + `fieldName` - field name of the condition.
-    + `match` - match expression of the condition.
-    + `value` - the value correspond with the field
+  + `conditions` - the condition list of inquiring the chat `conditions[0][field]=agent&conditions[0][operate]=is&conditions[0][value]=michael`
+    - `field` - field name of the condition.
+    - `operate` - operate expression of the condition.
+    - `value` - the value correspond with the field
   - `pageIndex` -the page index of query.
+  - `pageSize` - the page size of this query. defaults to 10, maximum is 500
+
+  
 
 - Response 
-  - `total` -total count of the list.
-  - `previousPage` -url of the previous page.
-  - `nextPage` -url of the next page.
+  - `total` - total count of the list.
+  - `previousPage` - url of the previous page.
+  - `nextPage` - url of the next page.
   - `chats` - an array of [Chat](#chat-json-format)
 
+
 ### Get a single chat
-- End Point 
+
   `Get /api/v1/livechat/chats/{id}`
+  - Parameters: No parameter.
+  - Response: [Chat](#chat-json_format)
 
-- Parameters: No parameter.
 
-- Response 
-  Chat Json Object
+# Offline Message
+  + `Get /api/v1/livechat/offlineMessages` -Get Offline messages list.
 
-### Get missed and refused chats list
+## Model
+### Offline Message JSON format
+ Offline Message is represented as simple flat JSON objects with the following keys:  
 
-  `Get /api/v1/livechat/chats/missedAndRefused`
+  | Name | Type | Read-only | Mandatory | Description |
+  | - | - | :-: | :-: | - |  
+  | `id` | integer  | yes | yes | id of the chat. |
+  | `time` | datetime | yes | no | time of this offline message submitted. |
+  | `ssoUserId` | string | yes | no | sso id of visitor |
+  | `name` | string | no | no | name of the visitor |
+  | `email` | string | no | no | email of the visitor |
+  | `department` | string | no | no | department of this offline message |
+  | `agent` | string | no | no | agent of this offline message belong |
+  | `content` | string | no | no | content of this offline message |
+  | `fields` | array | no | no | values of custom fields entered by visitors in the offline message window. An array of [Custom Field Value](#custom-field-value-json-format). |
+  | `customVariables` | array | no | no | information of custom variables captured from the web page visitors viewed. An array of [Custom Variable Value](#custom-variable-value-json-format). |
+  | `attachment` | [Attachment](#attachment-json-foramt) | no | no | attachment submitted in the offline message |
 
-  - Parameters
-    - `dateInterval` - the date interval of the message.
-    optional：
-    - `type` - type of the chat, including `missed` and `refused`.
-    - `campaignId` - id of the campaign which the message of the chat happened in.
-    - `visitorSegmentId` - id of the visitor segment which visitor belongs to.
-    - `pageIndex` -the page index of query.
 
-  - Response 
-    - `total` -total count of the list.
-    - `previousPage` -url of the previous page.
-    - `nextPage` -url of the next page.
-    - `messages` -messages list
-      + `id` - id of the chat.
-      + `type` - type of the chat, including `missed` and `refused`.
-      + `time` -time when the chat happened.
-      + `ssoUserId` -user id of sso.
-      + `visitorName` -name of the visitor.
-      + `visitorEmail` -email of the visitor.
-      + `agents` -name of agents who participate in the chat.
-      + `waitingTime` -wait time of the chat.
-      + `comment` -comment of the chat.
-
-### Agent chats list
-
-  `Get /api/v1/livechat/chats/agentChats`
-
-  - Parameters: 
-    - `dateInterval` - the date interval of the message.
-    optional：
-    - `agentId` - id of the agent who paticipate in the chat.
-    - `keywords` - the key words of inquiring the chat
-    - `pageIndex` -the page index of query.
-
-  - Response 
-    - `total` -total count of the list.
-    - `previousPage` -url of the previous page.
-    - `nextPage` -url of the next page.
-    - `messages` -messages list
-      + `agentFrom` - name of the agent from who send the meesage.
-      + `agentTo` - name of the agent from who received the meesage.
-      + `summary` -summary of the chat.
-
-## Message
-  + `Get /api/v1/livechat/messages` -Get messages list.
-
+## Endpoint
 ### Get messages list
 
-  `Get /api/v1/livechat/messages` 
+  `Get /api/v1/livechat/offlineMessages` 
 
   - Parameters: 
-    - `dateInterval` - the date interval of the message.
-    optional：
-    - `campaignId` - id of the campaign which the message of the chat happened in
-    - `agentId` - id of the agent who participate in the chat.
-    - `visitorSegmentId` - id of the visitor segment which visitor belongs to.
-    - `keywords` - the key words of inquiring the message.
+    - `timeFrom` - the beginning of query time
+    - `timeTo` - the end of the query time
+    optional锛�
+    - `timezone` - time zone of the `timeFrom` and `timeTo`, defaults to UTC time
+    - `campaignId` - id of the campaign which the offline message
+    - `departmentId` - id of the department which the offline message belong
+    - `agentId` - id of the agent that this offline message belong 
+    - `visitorSegmentation` - id of the visitor segment which visitor belongs to.
+    - `keywords` - the key words of inquiring the  offline message.
     - `pageIndex` -the page index of query.
+    - `pageSize` - the page size of this query, defautls to 10, maximum is 500
 
   - Response 
     - `total` -total count of the list.
     - `previousPage` -url of the previous page.
     - `nextPage` -url of the next page.
-    - `messages` -messages list
-      + `id` - id of the chat which the message belongs to.
-      + `time` -time when the chat happened.
-      + `ssoUserId` -user id of sso.
-      + `visitorName` -name of the visitor.
-      + `visitorEmail` -email of the visitor.
-      + `agents` -name of agents who participate in the chat.
-      + `content` -content of the message.
+    - `offlineMessages` - an array of [Offline Message](#offline-message-json-format)
+
+# Missed & Refused Chats
+## Get missed and refused chats list
+
+  `Get /api/v1/livechat/missedAndRefusedChats`
+
+  - Parameters
+    - `timeFrom` - the beginning of query time
+    - `timeTo` - the end of the query time
+  optional锛�
+    - `timezone` - time zone of the `timeFrom` and `timeTo`, defaults to UTC time
+    - `type` - type of the chat, including `missed` and `refused`.
+    - `campaignId` - id of the campaign which the message of the chat happened in.
+    - `departmentId` - id of the department which the chat belongs to.
+    - `visitorSegmentation` - id of the visitor segment which visitor belongs to.
+    - `pageIndex` -the page index of query.
+    - `pageSize` - the page size of this query, defautls to 10, maximum is 500
+
+  - Response 
+    - `total` -total count of the list.
+    - `previousPage` -url of the previous page.
+    - `nextPage` -url of the next page.
+    - `missedAndRefusedChats` - list
+      + `type` - type of the chat, including `missed` and `refused`.
+      + `chat` - [Chat](#chat-json_format)
+
+# Agent chats
+
+## get agent chats list
+
+  `Get /api/v1/livechat/agentChats`
+
+  - Parameters: 
+    - `timeFrom` - the beginning of query time
+    - `timeTo` - the end of the query time
+    optional锛�
+    - `timezone` - time zone of the `timeFrom` and `timeTo`, defaults to UTC time
+    - `agentId` - id of the agent who paticipate in the chat.
+    - `keywords` - the key words of inquiring the chat
+
+  - Response 
+    - `agentChats` - `array` agent chats list
+      + `agents` - `array`, agent names of the agent chat conversation
+      + `transcript` - `array`
+        - `time` - `datetime`, time of this message was sent
+        - `sender` - `string`, sender name of this message
+        - `content` - `string`, content of this message
